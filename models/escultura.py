@@ -26,13 +26,15 @@ class Escultura(db.Model):
     # methods
     @property
     def serialize(self):
+        persona_serialized = self.persona.serialize if self.persona else None
         return {
             'external_id'       : self.external_id,
             'nombre'       : self.nombre,
             'autor' : self.autor,
             'estado'    : self.estado,
             'latitud' : self.latitud,
-            'longitud' : self.longitud
+            'longitud' : self.longitud,
+            'persona' : persona_serialized
         }
     
     def copy(self):
